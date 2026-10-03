@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TakaBazar Demo Casino</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="topbar"><span class="demo">DEMO MONEY ONLY</span><span>Server-authoritative games • No real-money payments</span></div>
+<header>
+  <button class="brand" id="brandBtn" aria-label="TakaBazar"><span class="logo">TB</span><span><b>TakaBazar</b><small>Demo Casino</small></span></button>
+  <div class="wallet">DEMO <b id="balanceTop">0</b></div>
+</header>
+<main>
+  <section class="hero">
+    <div>
+      <span class="eyebrow">PLAY FOR FUN</span>
+      <h1>Premium demo casino experience.</h1>
+      <p>Central wallet, server-side game results, bet history, support and a hidden admin dashboard — all in one ready-to-run project.</p>
+      <div class="heroActions"><button class="primary" onclick="go('games')">Play Games</button><button class="ghost" onclick="openAccount()">Login / Register</button></div>
+    </div>
+    <div class="heroCard"><small>YOUR DEMO BALANCE</small><strong id="heroBalance">0</strong><span>DEMO CREDITS</span></div>
+  </section>
+
+  <section class="section" id="games"><div class="sectionHead"><div><span>GAME LOBBY</span><h2>Games</h2></div><button class="mini" onclick="loadGames()">Refresh</button></div><div class="gameGrid" id="gameGrid"></div></section>
+  <section class="section" id="wallet"><div class="sectionHead"><div><span>CENTRAL WALLET</span><h2>Transactions</h2></div></div><div class="panel" id="ledgerList"><p class="muted">Login to see your wallet history.</p></div></section>
+  <section class="section" id="history"><div class="sectionHead"><div><span>BET HISTORY</span><h2>Recent Bets</h2></div></div><div class="panel" id="betList"><p class="muted">Login to see your bets.</p></div></section>
+  <section class="section" id="support"><div class="sectionHead"><div><span>SUPPORT</span><h2>Help Center</h2></div></div><div class="supportGrid"><div class="panel"><label>Subject</label><input id="supportSubject" placeholder="What do you need help with?"><label>Message</label><textarea id="supportMessage" placeholder="Write your message"></textarea><button class="primary wide" onclick="sendSupport()">Send Ticket</button></div><div class="panel" id="ticketList"><p class="muted">Your support tickets will appear here.</p></div></div></section>
+</main>
+<nav class="bottomNav"><button onclick="go('games')">🎮<span>Games</span></button><button onclick="go('wallet')">👛<span>Wallet</span></button><button onclick="go('history')">🧾<span>History</span></button><button onclick="go('support')">🎧<span>Support</span></button><button onclick="openAccount()">👤<span>Account</span></button></nav>
+
+<div class="modal" id="accountModal"><div class="modalCard"><button class="x" onclick="closeModal('accountModal')">×</button><div id="loggedOutBox"><div class="tabs"><button class="on" id="loginTab" onclick="showAuth('login')">Login</button><button id="registerTab" onclick="showAuth('register')">Register</button></div><div id="loginBox"><label>Mobile</label><input id="loginPhone" inputmode="tel" placeholder="01XXXXXXXXX"><label>Password</label><input id="loginPassword" type="password" placeholder="Minimum 6 characters"><button class="primary wide" onclick="login()">Login</button></div><div id="registerBox" class="hidden"><label>Name</label><input id="regName" placeholder="Your name"><label>Mobile</label><input id="regPhone" inputmode="tel" placeholder="01XXXXXXXXX"><label>Password</label><input id="regPassword" type="password" placeholder="Minimum 6 characters"><button class="primary wide" onclick="register()">Create Demo Account</button><p class="tiny">New users receive starter DEMO credits. These credits have no cash value.</p></div></div><div id="loggedInBox" class="hidden"><h3 id="profileName">Account</h3><p id="profilePhone" class="muted"></p><div class="profileBalance"><span>Demo Balance</span><b id="profileBalance">0</b></div><button class="danger wide" onclick="logout()">Logout</button></div></div></div>
+<div class="modal" id="gameModal"><div class="modalCard gameModalCard"><button class="x" onclick="closeModal('gameModal')">×</button><div id="gameBody"></div></div></div>
+<div class="modal adminModal" id="adminModal"><div class="adminShell"><div class="adminTop"><div><b>TAKABAZAR ADMIN</b><small>Demo platform control center</small></div><button onclick="closeModal('adminModal')">Close</button></div><div class="stats" id="adminStats"></div><div class="adminTabs"><button class="on" onclick="adminTab('users',this)">Users</button><button onclick="adminTab('games',this)">Games</button><button onclick="adminTab('bets',this)">Bets</button><button onclick="adminTab('support',this)">Support</button><button onclick="adminTab('audit',this)">Audit</button></div><div id="adminContent" class="adminContent"></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>
